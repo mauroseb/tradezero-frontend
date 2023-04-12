@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "TradeZero",
+    "slug": "TradeZero",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/tradezero-icon.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/tradezero-bg.jpg",
+      "resizeMode": "contain",
+      "backgroundColor": "#25292e"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/tradezero-icon.png",
+        "backgroundColor": "#25292e"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/images/tradezero-icon.png"
+    }
+  }
+}
