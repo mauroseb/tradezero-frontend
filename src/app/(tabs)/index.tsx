@@ -94,7 +94,7 @@ export default function HomeScreen() {
           <Text style={styles.graphTextSmall}>Volume: {stockVolume}</Text>
           <Text style={styles.graphTextSmall}>MarketCap: {stockMarketcap}</Text>
           <CandlestickChart.Provider data={stockCandleChartData}>
-            <CandlestickChart  height={screenWidth / 4} width={screenWidth / 6} >
+            <CandlestickChart  height={screenWidth / 6} width={screenWidth / 8} >
               <CandlestickChart.Candles />
               <CandlestickChart.Crosshair />
             </CandlestickChart>
