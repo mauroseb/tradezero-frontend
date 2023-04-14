@@ -17,12 +17,12 @@ const BGImage = require('../../assets/images/tradezero-bg.jpg');
 
 
 const candledefault = [
-  {"open": 101.70999908447266, "high": 104.19000244140625, "low": 101.44000244140625, "close": 104.0, "timestamp": 1680235200.0}, 
-  {"open": 102.66999816894531, "high": 104.94999694824219, "low": 102.37999725341797, "close": 104.91000366210938, "timestamp": 1680494400.0}, 
-  {"open": 104.83999633789062, "high": 106.0999984741211, "low": 104.5999984741211, "close": 105.12000274658203, "timestamp": 1680580800.0}, 
-  {"open": 106.12000274658203, "high": 106.54000091552734, "low": 104.10199737548828, "close": 104.94999694824219, "timestamp": 1680667200.0}, 
-  {"open": 105.7699966430664, "high": 109.62999725341797, "low": 104.81500244140625, "close": 108.9000015258789, "timestamp": 1680753600.0}, 
-  {"open": 107.38999938964844, "high": 107.97000122070312, "low": 105.5999984741211, "close": 106.94999694824219, "timestamp": 1681099200.0}, 
+  {"open": 101.70999908447266, "high": 104.19000244140625, "low": 101.44000244140625, "close": 104.0, "timestamp": 1680235200.0},
+  {"open": 102.66999816894531, "high": 104.94999694824219, "low": 102.37999725341797, "close": 104.91000366210938, "timestamp": 1680494400.0},
+  {"open": 104.83999633789062, "high": 106.0999984741211, "low": 104.5999984741211, "close": 105.12000274658203, "timestamp": 1680580800.0},
+  {"open": 106.12000274658203, "high": 106.54000091552734, "low": 104.10199737548828, "close": 104.94999694824219, "timestamp": 1680667200.0},
+  {"open": 105.7699966430664, "high": 109.62999725341797, "low": 104.81500244140625, "close": 108.9000015258789, "timestamp": 1680753600.0},
+  {"open": 107.38999938964844, "high": 107.97000122070312, "low": 105.5999984741211, "close": 106.94999694824219, "timestamp": 1681099200.0},
   {"open": 106.91999816894531, "high": 107.22000122070312, "low": 105.27999877929688, "close": 106.12000274658203, "timestamp": 1681185600.0}
 ];
 
@@ -38,7 +38,7 @@ export default function HomeScreen() {
   const [stockMarketcap, setStockMarketcap] = useState(0);
   const [stockCandleChartData, setStockCandleChartData] = useState<TCandle[]>(candledefault);
   const [ticker, setTicker] = useState("IBM");
-  
+
   const fetchStockData = async () => {
     setLoading(true);
     const fetchedStockData = await getCurrentStockPrice(ticker);
@@ -47,7 +47,7 @@ export default function HomeScreen() {
     setStockMarketcap(fetchedStockData['marketcap']);
     setLoading(false);
   };
-  
+
   const fetchCandleChartData = async (days: string) => {
     setLoading(true);
     const fetchedSelectedCandleChartData = await getCandleChartStockData(
@@ -57,27 +57,27 @@ export default function HomeScreen() {
     setStockCandleChartData(fetchedSelectedCandleChartData);
     setLoading(false);
   };
-  
-  const handleStockChange = (selectedStock: string) => { 
-    setLoading(true); 
+
+  const handleStockChange = (selectedStock: string) => {
+    setLoading(true);
     setTicker(selectedStock);
     fetchStockData();
     fetchCandleChartData('7');
     setLoading(false)
   };
-  
+
   const screenWidth = Dimensions.get("window").width;
-  
+
   const chartColor = 'black';
-  
-  useEffect(() => {
-    handleStockChange(ticker);
-  }, []);
+
+
 
   if (loading) {
     return <ActivityIndicator size="large" />;
   }
- 
+  useEffect(() => {
+    handleStockChange(ticker);
+  }, []);
   return (
     <View style={styles.container}>
       <ImageBackground source={BGImage} style={styles.image}>
@@ -94,7 +94,7 @@ export default function HomeScreen() {
           <Text style={styles.graphTextSmall}>Volume: {stockVolume}</Text>
           <Text style={styles.graphTextSmall}>MarketCap: {stockMarketcap}</Text>
           <CandlestickChart.Provider data={stockCandleChartData}>
-            <CandlestickChart  height={screenWidth / 6} width={screenWidth / 8} >
+            <CandlestickChart  height={screenWidth / 8} width={screenWidth / 8} >
               <CandlestickChart.Candles />
               <CandlestickChart.Crosshair />
             </CandlestickChart>
@@ -125,21 +125,22 @@ const styles = StyleSheet.create({
 	  textAlign: 'center',
     alignItems: 'center',
     color: 'white',
+    textShadow: '1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue',
   },
   baseText: {
     fontSize: 20,
-	  textAlign: 'center',
+	textAlign: 'center',
     color: '#ffffff',
   },
   graphText: {
     fontSize: 15,
-	  textAlign: 'left',
+	textAlign: 'left',
     color: '#ffffff',
     fontWeight: 'bold',
   },
   graphTextSmall: {
     fontSize: 10,
-	  textAlign: 'left',
+	textAlign: 'left',
     color: '#ffffff',
   },
   separator: {
@@ -148,24 +149,24 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   contentContainer: {
-	  backgroundColor: '#25292e',
+	backgroundColor: '#25292e',
     alignItems: 'center',
     justifyContent: 'center',
   },
   imageContainer: {
-	  backgroundColor: '25292e',
+	backgroundColor: '25292e',
     borderRadius: 20,
   },
   chartContainer: {
     width: 300,
-	  backgroundColor: 'black',
+	backgroundColor: 'black',
     borderRadius: 20,
     tintColor: 'black',
     padding: 15,
     justifyContent: 'center',
   },
   image: {
-	  backgroundColor: '#25292e',
+	backgroundColor: '#25292e',
     justifyContent: 'center',
     alignItems: 'center',
     tintColor: 'black',
