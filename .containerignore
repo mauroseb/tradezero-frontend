@@ -1,0 +1,11 @@
+.git*
+.expo*
+.circleci*
+*.md
+*.rst
+Containerfile
+.containerignore
+scripts/
+node_modules/
+src/node_modules/
+src/.expo

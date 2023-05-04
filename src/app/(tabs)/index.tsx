@@ -33,6 +33,7 @@ export const {width: SIZE} = Dimensions.get('window');
 export default function HomeScreen() {
 
   const [loading, setLoading] = useState(false);
+  const [stockName, setStockName] = useState("IBM");
   const [stockValue, setStockValue] = useState(0);
   const [stockVolume, setStockVolume] = useState(0);
   const [stockMarketcap, setStockMarketcap] = useState(0);
@@ -40,29 +41,29 @@ export default function HomeScreen() {
   const [ticker, setTicker] = useState("IBM");
 
   const fetchStockData = async () => {
-    setLoading(true);
     const fetchedStockData = await getCurrentStockPrice(ticker);
+    setStockName(fetchedStockData['name']);
     setStockValue(fetchedStockData['price']);
     setStockVolume(fetchedStockData['volume']);
     setStockMarketcap(fetchedStockData['marketcap']);
-    setLoading(false);
   };
 
   const fetchCandleChartData = async (days: string) => {
-    setLoading(true);
     const fetchedSelectedCandleChartData = await getCandleChartStockData(
       ticker,
       days
     );
     setStockCandleChartData(fetchedSelectedCandleChartData);
-    setLoading(false);
+  };
+
+  const stockChange = (selectedStock: string) => {
+    setTicker(selectedStock);
   };
 
   const handleStockChange = (selectedStock: string) => {
     setLoading(true);
-    setTicker(selectedStock);
     fetchStockData();
-    fetchCandleChartData('7');
+    fetchCandleChartData('10');
     setLoading(false)
   };
 
@@ -77,7 +78,7 @@ export default function HomeScreen() {
   }
   useEffect(() => {
     handleStockChange(ticker);
-  }, []);
+  }, [ticker]);
   return (
     <View style={styles.container}>
       <ImageBackground source={BGImage} style={styles.image}>
@@ -89,7 +90,7 @@ export default function HomeScreen() {
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
 	    <View style={styles.contentContainer}>
         <View style={styles.chartContainer}>
-          <Text style={styles.graphText}>{ticker}</Text>
+          <Text style={styles.graphText}>{stockName} ({ticker})</Text>
           <Text style={styles.graphTextSmall}>Current Price: USD {stockValue}</Text>
           <Text style={styles.graphTextSmall}>Volume: {stockVolume}</Text>
           <Text style={styles.graphTextSmall}>MarketCap: {stockMarketcap}</Text>
@@ -102,7 +103,7 @@ export default function HomeScreen() {
         </View>
         <FlatList
           data={dataset.items}
-          renderItem={({item}) => <HomeCategory currentStock={ticker} onStockChange={handleStockChange}  category={item} />}
+          renderItem={({item}) => <HomeCategory currentStock={ticker} onStockChange={stockChange}  category={item} />}
           showHorizontalScrollIndicator={false}
         />
 	    </View>

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyleSheet, Image, FlatList, View, Pressable } from 'react-native';
 import {ArtDesign} from "@expo/vector-icons";
 import { Text } from '../../components/Themed';
-
+import { useEffect } from "react";
 
 export default function HomeCategory(props) {
 
@@ -22,7 +22,7 @@ export default function HomeCategory(props) {
             style={{
               backgroundColor: isStockSelected(item.ticker) ? "#1e1e1e" : "transparent",
               borderRadius: 10,
-              borderColor:  isStockSelected(item.ticker) ? "white" :  "transparent",
+              borderColor: isStockSelected(item.ticker) ? "white" :  "transparent",
               borderWidth: isStockSelected(item.ticker) ? 3 : 0,
             }}
             onPress={() => {
