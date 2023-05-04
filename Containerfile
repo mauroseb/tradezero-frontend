@@ -12,7 +12,7 @@ ARG NODE_ENV=development
 FROM registry.access.redhat.com/ubi8/nodejs-16 AS builder
 
 ENV USER_ID=1001 \
-	APP=tradezero-frontend \
+    APP=tradezero-frontend \
     NODE_ENV=$NODE_ENV \
     TZF_VERSION=$IMAGE_VERSION \
     TZF_COMMIT=$IMAGE_VERSION_COMMIT$
@@ -36,7 +36,7 @@ RUN /usr/libexec/s2i/assemble
 FROM registry.access.redhat.com/ubi8/nodejs-16-minimal
 
 ENV USER_ID=1001 \
-	APP=tradezero-frontend \
+    APP=tradezero-frontend \
     NODE_ENV=$NODE_ENV \
     WEB_PORT=8000 \
     TZF_PORT=8000 \
@@ -49,10 +49,10 @@ LABEL maintainer="mauro.oddi@gmail.com" name="$APP" build-date=$IMAGE_CREATE_DAT
 
 # k8s, OCP and other labels [ https://access.redhat.com/documentation/en-us/openshift_container_platform/4.12/html/images/creating-images#defining-image-metadata ]
 LABEL summary="$SUMMARY" \
-	  usage="podman run -d --name tradezero-frontend-1 -e TZP_HOST=192.168.0.1 -e TZM_HOST=192.168.0.2 -p 8000:8000 tradezero-frontend:0.1.0" \
+      usage="podman run -d --name tradezero-frontend-1 -e TZP_HOST=192.168.0.1 -e TZM_HOST=192.168.0.2 -p 8000:8000 tradezero-frontend:0.1.0" \
       commit="$IMAGE_VERSION_COMMIT" \
-	  io.k8s.description="$SUMMARY" io.k8s.display-name="$APP" \
-	  io.openshift.non-scalable="false" io.openshift.tags="$APP"
+      io.k8s.description="$SUMMARY" io.k8s.display-name="$APP" \
+      io.openshift.non-scalable="false" io.openshift.tags="$APP"
 
 # OCI Image Spec Labels [ https://github.com/opencontainers/image-spec/blob/master/annotations.md ]
 LABEL org.opencontainers.image.title="TradeZero - Frontend" \
