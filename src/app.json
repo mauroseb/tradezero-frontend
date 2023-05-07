@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "TradeZero",
-    "slug": "TradeZero",
-    "version": "1.0.0",
+    "name": "tradeaero-frontend",
+    "slug": "tradezero-frontend",
+    "version": "0.1.4",
     "orientation": "portrait",
     "icon": "./assets/images/tradezero-icon.png",
     "scheme": "myapp",
