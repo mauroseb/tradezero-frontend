@@ -68,6 +68,7 @@ export default function HomeScreen() {
   };
 
   const screenWidth = Dimensions.get("window").width;
+  const screenHeight = Dimensions.get("window").height;
 
   const chartColor = 'black';
 
@@ -95,7 +96,7 @@ export default function HomeScreen() {
           <Text style={styles.graphTextSmall}>Volume: {stockVolume}</Text>
           <Text style={styles.graphTextSmall}>MarketCap: {stockMarketcap}</Text>
           <CandlestickChart.Provider data={stockCandleChartData}>
-            <CandlestickChart  height={screenWidth / 8} width={screenWidth / 8} >
+            <CandlestickChart height={screenHeight / 4 } width={screenWidth / 8} >
               <CandlestickChart.Candles />
               <CandlestickChart.Crosshair />
             </CandlestickChart>
@@ -130,18 +131,18 @@ const styles = StyleSheet.create({
   },
   baseText: {
     fontSize: 20,
-	textAlign: 'center',
+	  textAlign: 'center',
     color: '#ffffff',
   },
   graphText: {
     fontSize: 15,
-	textAlign: 'left',
+	  textAlign: 'left',
     color: '#ffffff',
     fontWeight: 'bold',
   },
   graphTextSmall: {
     fontSize: 10,
-	textAlign: 'left',
+	  textAlign: 'left',
     color: '#ffffff',
   },
   separator: {
@@ -150,24 +151,24 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   contentContainer: {
-	backgroundColor: '#25292e',
+	  backgroundColor: '#25292e',
     alignItems: 'center',
     justifyContent: 'center',
   },
   imageContainer: {
-	backgroundColor: '25292e',
+	  backgroundColor: '25292e',
     borderRadius: 20,
   },
   chartContainer: {
-    width: 300,
-	backgroundColor: 'black',
+    width: 330,
+	  backgroundColor: 'black',
     borderRadius: 20,
     tintColor: 'black',
     padding: 15,
     justifyContent: 'center',
   },
   image: {
-	backgroundColor: '#25292e',
+	  backgroundColor: '#25292e',
     justifyContent: 'center',
     alignItems: 'center',
     tintColor: 'black',

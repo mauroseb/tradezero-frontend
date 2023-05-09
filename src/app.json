@@ -2,7 +2,7 @@
   "expo": {
     "name": "tradeaero-frontend",
     "slug": "tradezero-frontend",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "orientation": "portrait",
     "icon": "./assets/images/tradezero-icon.png",
     "scheme": "myapp",
