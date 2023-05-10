@@ -1,4 +1,3 @@
-bash-4.4$ cat package.json 
 {
   "name": "tradezero-frontend",
   "version": "0.1.5",
@@ -37,17 +36,17 @@ bash-4.4$ cat package.json
     "react-native-screens": "~3.20.0",
     "react-native-wagmi-charts": "^2.3.0",
     "react-native-web": "~0.18.10",
-    "typescript": "^4.9.4",
-    "@types/react": "~18.0.27"
+    "typescript": "4.9.4",
+    "@types/react": "18.0.14"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
-    "@types/react": "~18.0.14",
+    "@types/react": "18.0.14",
     "@types/react-native": "^0.71.6",
     "jest": "^29.2.1",
     "jest-expo": "~48.0.0",
     "react-test-renderer": "18.2.0",
-    "typescript": "^4.9.4"
+    "typescript": "4.9.4"
   },
   "private": true
 }

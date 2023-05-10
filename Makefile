@@ -27,7 +27,7 @@ all: clean build push clean
 
 .PHONY: build
 build: ## Build container
-	podman build ${PODMAN_ARGS} --build-arg=IMAGE_VERSION=${VERSION} \
+	podman build $(PODMAN_ARGS) --build-arg=IMAGE_VERSION=$(VERSION) \
              --build-arg=IMAGE_CREATE_DATE=$$(date +%F) \
              --build-arg=IMAGE_VERSION_COMMIT=$$(git rev-parse --short HEAD) \
  			 -t ${REGISTRY}/${REG_NAMESPACE}/${NAME}:${VERSION} .

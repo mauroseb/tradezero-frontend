@@ -3,8 +3,7 @@
 ARG IMAGE_CREATE_DATE
 ARG IMAGE_VERSION
 ARG IMAGE_VERSION_COMMIT
-#ARG NODE_ENV=production
-ARG NODE_ENV=development
+ARG NODE_ENV
 
 ###########################################
 # Use nodejs UBI base image for first stage
@@ -13,9 +12,9 @@ FROM registry.access.redhat.com/ubi8/nodejs-16 AS builder
 
 ENV USER_ID=1001 \
     APP=tradezero-frontend \
-    NODE_ENV=$NODE_ENV \
+    NODE_ENV=${NODE_ENV:-development} \
     TZF_VERSION=$IMAGE_VERSION \
-    TZF_COMMIT=$IMAGE_VERSION_COMMIT$
+    TZF_COMMIT=$IMAGE_VERSION_COMMIT
 
 LABEL maintainer="mauro.oddi@gmail.com" name="$APP" build-date=$IMAGE_CREATE_DATE version=$IMAGE_VERSION
 
@@ -23,11 +22,14 @@ USER 0
 
 # Add code where s2i assemble script expects it
 ADD src /tmp/src
+#ADD src /opt/app-root
 
 RUN  chown -R ${USER_ID}:0 /tmp/src
+#RUN  chown -R ${USER_ID}:0 /opt/app-root
 
 # Install the dependencies
 RUN /usr/libexec/s2i/assemble
+#RUN npm install
 
 ###########################################
 # Second stage with UBI8 minimal
@@ -37,12 +39,12 @@ FROM registry.access.redhat.com/ubi8/nodejs-16-minimal
 
 ENV USER_ID=1001 \
     APP=tradezero-frontend \
-    NODE_ENV=$NODE_ENV \
+    NODE_ENV=${NODE_ENV:-production} \
     WEB_PORT=8000 \
     TZF_PORT=8000 \
     TZF_HOME=/opt/app-root/src \
     TZF_VERSION=$IMAGE_VERSION \
-    TZF_COMMIT=$IMAGE_VERSION_COMMIT$ \
+    TZF_COMMIT=$IMAGE_VERSION_COMMIT \
     SUMMARY="TradeZero Frontend microservice for the Tradezero application."
 
 LABEL maintainer="mauro.oddi@gmail.com" name="$APP" build-date=$IMAGE_CREATE_DATE version=$IMAGE_VERSION
