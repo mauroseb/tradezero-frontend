@@ -1,7 +1,7 @@
 ![GitHub](https://img.shields.io/github/license/mauroseb/tradezero-frontend)
 # Tradezero Frontend Microservice
 
-Frontend service of the TradeZero application, which is intenteded to be used as an sample microservice architcture (MSA) application.
+Frontend service of the TradeZero application, which is intenteded to be used as a sample microservice architcture (MSA) application.
 
 The serivce is built using Typescript and React Native, and uses animated charts to draw the candlestick graphs.
 
