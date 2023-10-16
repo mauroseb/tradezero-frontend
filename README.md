@@ -14,8 +14,8 @@ In order the frontend to function properly it needs the following backend servic
    
 ## ENVIRONMENT VARS
 
-* TZP_HOST - TradeZero Pricer hostname or IP address
-* TZM_HOST - TradeZero Miner hostname or IP address
+* **TZP_HOST** - TradeZero Pricer hostname or IP address
+* **TZM_HOST** - TradeZero Miner hostname or IP address
 
   
 ## Run
