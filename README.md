@@ -13,6 +13,6 @@ In order to function properly it needs the following backend services:
 
 ## Screenshots
 
-![tradezero-frontend-1](images/tradezero-frontend-1.png)
+![tradezero-frontend-1](images/tradezero-frontend-1.jpg)
 
 
